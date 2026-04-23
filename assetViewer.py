@@ -36,6 +36,8 @@ class AssetViewer(AssetViewerWidget, AssetViewerBase):
         self.newProjectWidget.createButton.clicked.connect(self.create_new_project)
         self.settingWidget.saveButton.clicked.connect(self.save_config)
 
+        self.saveProgressWidget.addPath_btn.clicked.connect(self.set_workin_path)
+
         # check bug
         self.settingWidget.folderListWidget.newSubFolderButton.clicked.connect(self.print_check)
     
@@ -199,6 +201,10 @@ class AssetViewer(AssetViewerWidget, AssetViewerBase):
         progress_list = self.Data["quickSaveType"]
         for progress in progress_list:
             self.saveProgressWidget.progressType_cb.addItem(progress)
+    
+    def set_workin_path(self):
+        self.saveProgressWidget.outputPath_le.setText(self.SelectedPath)
+        self.saveProgressWidget.check_progress_files()
 
     # for bug check
     def print_check(self):
